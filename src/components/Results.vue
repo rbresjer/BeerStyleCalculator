@@ -48,7 +48,7 @@
       v-else
       v-for="category in filteredCategories"
     >
-      <b-row :key="category.$.id" class="pt-3">
+      <b-row :key="category.$.id" class="mt-3">
         <b-col>
           <strong>{{ category.name[0] }}</strong>
         </b-col>
