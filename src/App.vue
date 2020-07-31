@@ -10,7 +10,7 @@
               <a href="https://github.com/meanphil/bjcp-guidelines-2015" target="_blank">Meanphil's XML-port</a>
               of the <a href="https://bjcp.org/stylecenter.php" target="_blank">BJCP Guidelines 2015</a>.
             </p>
-            <p>The source code of this simple application is available at <a href="https://github.com/rbresjer/BeerStyleCalculator" target="_blank">GitHub</a>.</p>
+            <p>The source code of this application is available at <a href="https://github.com/rbresjer/BeerStyleCalculator" target="_blank">GitHub</a>.</p>
           </div>
 
           <Form />
