@@ -74,16 +74,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .beer-color-gradient-bar {
-    height: 20px;
-    position: relative;
-  }
-  .beer-color-gradient-bar-marker {
-    width: 2px;
-    height: 100%;
-    background-color: black;
-    position: absolute;
-  }
-</style>

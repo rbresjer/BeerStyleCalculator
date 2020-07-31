@@ -37,10 +37,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .beer-color {
-    width: 30px;
-    height: 30px;
-  }
-</style>

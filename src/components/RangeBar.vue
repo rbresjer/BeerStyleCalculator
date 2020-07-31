@@ -50,16 +50,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .range-bar {
-    height: 20px;
-    position: relative;
-  }
-  .range-bar-marker {
-    width: 2px;
-    height: 100%;
-    background-color: black;
-    position: absolute;
-  }
-</style>
