@@ -1,128 +1,132 @@
 <template>
-  <div class="card card-body rounded shadow mx-auto w-50 my-5">
-    <b-row class="my-1">
-      <b-col class="text-center">
-        <b-form-group>
-          <b-form-radio-group v-model="useEbc">
-            <b-form-radio :value="true">EBC</b-form-radio>
-            <b-form-radio :value="false">SRM</b-form-radio>
-          </b-form-radio-group>
-        </b-form-group>
-      </b-col>
-    </b-row>
+  <b-row class="justify-content-center">
+    <b-col cols="12" md="6" lg="4">
+      <div class="card card-body rounded shadow my-5">
+        <b-row class="my-1">
+          <b-col class="text-center">
+            <b-form-group>
+              <b-form-radio-group v-model="useEbc">
+                <b-form-radio :value="true">EBC</b-form-radio>
+                <b-form-radio :value="false">SRM</b-form-radio>
+              </b-form-radio-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
 
-    <b-row class="my-1">
-      <b-col cols="2">
-        <label class="col-form-label" for="ibu">IBU</label>
-      </b-col>
-      <b-col cols="10">
-        <b-form-input
-          id="ibu"
-          v-model="ibu"
-          type="number"
-          placeholder="E.g. 30.1"
-          step="0.01"
-        ></b-form-input>
-      </b-col>
-    </b-row>
-    <b-row class="my-1">
-      <b-col cols="2">
-        <label class="col-form-label" for="og">OG</label>
-      </b-col>
-      <b-col cols="10">
-        <b-form-input
-          id="og"
-          v-model="og"
-          type="number"
-          placeholder="E.g. 1.070"
-          step="0.01"
-        ></b-form-input>
-      </b-col>
-    </b-row>
-    <b-row class="my-1">
-      <b-col cols="2">
-        <label class="col-form-label" for="fg">FG</label>
-      </b-col>
-      <b-col cols="10">
-        <b-form-input
-          id="fg"
-          v-model="fg"
-          type="number"
-          placeholder="E.g. 1.010"
-          step="0.01"
-        ></b-form-input>
-      </b-col>
-    </b-row>
-    <b-row class="my-1">
-      <b-col cols="2">
-        <label class="col-form-label" for="ebc">EBC</label>
-      </b-col>
-      <b-col cols="10" class="d-flex align-items-center">
-        <b-form-input
-          id="ebc"
-          v-model="ebc"
-          type="number"
-          :readonly="!useEbc"
-          placeholder="E.g. 12.2"
-          step="0.01"
-        ></b-form-input>
-        <div
-          v-if="beerColor && useEbc"
-          class="beer-color rounded ml-2"
-          :style="{ backgroundColor: `#${beerColor}` }"
-        ></div>
-      </b-col>
-    </b-row>
-    <b-row class="my-1">
-      <b-col cols="2">
-        <label class="col-form-label" for="srm">SRM</label>
-      </b-col>
-      <b-col cols="10" class="d-flex align-items-center">
-        <b-form-input
-          id="srm"
-          v-model="srm"
-          type="number"
-          :readonly="useEbc"
-          placeholder="E.g. 5.5"
-          step="0.01"
-        ></b-form-input>
-        <div
-          v-if="beerColor && !useEbc"
-          class="beer-color rounded ml-2"
-          :style="{ backgroundColor: `#${beerColor}` }"
-        ></div>
-      </b-col>
-    </b-row>
-    <b-row class="my-1">
-      <b-col cols="2">
-        <label class="col-form-label" for="abv">ABV</label>
-      </b-col>
-      <b-col cols="10">
-        <b-form-input
-          id="abv"
-          v-model="abv"
-          type="number"
-          placeholder="E.g. 5.2"
-          step="0.1"
-        ></b-form-input>
-      </b-col>
-    </b-row>
-    <b-row class="my-1">
-      <b-col cols="2"></b-col>
-      <b-col cols="10">
-        <b-form-checkbox v-model="showFlexible" name="check-button" switch>
-          Match flexible
-        </b-form-checkbox>
-      </b-col>
-    </b-row>
+        <b-row class="my-1">
+          <b-col cols="2">
+            <label class="col-form-label" for="ibu">IBU</label>
+          </b-col>
+          <b-col cols="10">
+            <b-form-input
+              id="ibu"
+              v-model="ibu"
+              type="number"
+              placeholder="E.g. 30.1"
+              step="0.01"
+            ></b-form-input>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col cols="2">
+            <label class="col-form-label" for="og">OG</label>
+          </b-col>
+          <b-col cols="10">
+            <b-form-input
+              id="og"
+              v-model="og"
+              type="number"
+              placeholder="E.g. 1.070"
+              step="0.01"
+            ></b-form-input>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col cols="2">
+            <label class="col-form-label" for="fg">FG</label>
+          </b-col>
+          <b-col cols="10">
+            <b-form-input
+              id="fg"
+              v-model="fg"
+              type="number"
+              placeholder="E.g. 1.010"
+              step="0.01"
+            ></b-form-input>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col cols="2">
+            <label class="col-form-label" for="ebc">EBC</label>
+          </b-col>
+          <b-col cols="10" class="d-flex align-items-center">
+            <b-form-input
+              id="ebc"
+              v-model="ebc"
+              type="number"
+              :readonly="!useEbc"
+              placeholder="E.g. 12.2"
+              step="0.01"
+            ></b-form-input>
+            <div
+              v-if="beerColor && useEbc"
+              class="beer-color rounded ml-2"
+              :style="{ backgroundColor: `#${beerColor}` }"
+            ></div>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col cols="2">
+            <label class="col-form-label" for="srm">SRM</label>
+          </b-col>
+          <b-col cols="10" class="d-flex align-items-center">
+            <b-form-input
+              id="srm"
+              v-model="srm"
+              type="number"
+              :readonly="useEbc"
+              placeholder="E.g. 5.5"
+              step="0.01"
+            ></b-form-input>
+            <div
+              v-if="beerColor && !useEbc"
+              class="beer-color rounded ml-2"
+              :style="{ backgroundColor: `#${beerColor}` }"
+            ></div>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col cols="2">
+            <label class="col-form-label" for="abv">ABV</label>
+          </b-col>
+          <b-col cols="10">
+            <b-form-input
+              id="abv"
+              v-model="abv"
+              type="number"
+              placeholder="E.g. 5.2"
+              step="0.1"
+            ></b-form-input>
+          </b-col>
+        </b-row>
+        <b-row class="my-1">
+          <b-col cols="2"></b-col>
+          <b-col cols="10">
+            <b-form-checkbox v-model="showFlexible" name="check-button" switch>
+              Match flexible
+            </b-form-checkbox>
+          </b-col>
+        </b-row>
 
-    <b-row class="my-1">
-      <b-col cols="2"></b-col>
-      <b-col>
-        <button class="btn btn-primary" @click="resetFilters">Reset</button>
-      </b-col>
-    </b-row>
-  </div>
+        <b-row class="my-1">
+          <b-col cols="2"></b-col>
+          <b-col>
+            <button class="btn btn-primary" @click="resetFilters">Reset</button>
+          </b-col>
+        </b-row>
+      </div>
+    </b-col>
+  </b-row>
 </template>
 
 <script>

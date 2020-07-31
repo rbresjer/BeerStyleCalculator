@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex justify-content-between">
+    <div class="d-md-flex justify-content-between small">
       <div>{{ lowLabel }}</div>
       <div>-</div>
       <div>{{ highLabel }}</div>

@@ -1,51 +1,79 @@
 <template>
   <div>
-    <table class="table table-sm">
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">IBU</th>
-          <th scope="col">OG</th>
-          <th scope="col">FG</th>
-          <th scope="col">
+    <b-row class="font-weight-bold border-bottom">
+      <b-col lg="4">
+        Name
+      </b-col>
+      <b-col lg="8">
+        <b-row>
+          <b-col>
+            IBU
+          </b-col>
+          <b-col>
+            OG
+          </b-col>
+          <b-col>
+            FG
+          </b-col>
+          <b-col>
             <template v-if="useEbc">EBC</template>
             <template v-else>SRM</template>
-          </th>
-          <th scope="col">ABV</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-if="!isLoading && filteredCategories && filteredCategories.length === 0">
-          <td colspan="6">
-            <div class="alert alert-warning text-center">
-              No matching styles
-            </div>
-          </td>
-        </tr>
-        <template v-else v-for="category in filteredCategories">
-          <tr :key="category.$.id">
-            <td colspan="6" class="pt-3">
-              <strong>{{ category.name[0] }}</strong>
-            </td>
-          </tr>
-          <template v-for="subcategory in category.subcategory">
-            <tr :key="`${subcategory.$.id}-stats`">
-              <td>
-                <a
-                  href="#"
-                  @click.prevent="toggleDetailsForSubcategoryId(subcategory.$.id)"
-                  :class="{ 'font-weight-bold' : showDetailsForSubcategoryId === subcategory.$.id }"
-                >
-                  <template v-if="showDetailsForSubcategoryId === subcategory.$.id">
-                    -
-                  </template>
-                  <template v-else>
-                    +
-                  </template>
-                  {{ subcategory.name[0] }}
-                </a>
-              </td>
-              <td>
+          </b-col>
+          <b-col>
+            ABV
+          </b-col>
+        </b-row>
+      </b-col>
+    </b-row>
+
+    <b-row
+      v-if="isLoading"
+      class="mt-3"
+    >
+      <b-col>
+        <div class="spinner-border text-primary"></div>
+      </b-col>
+    </b-row>
+
+    <b-row
+      v-else-if="filteredCategories && filteredCategories.length === 0"
+      class="mt-3"
+    >
+      <b-col>
+        No matching styles
+      </b-col>
+    </b-row>
+
+    <template
+      v-else
+      v-for="category in filteredCategories"
+    >
+      <b-row :key="category.$.id" class="pt-3">
+        <b-col>
+          <strong>{{ category.name[0] }}</strong>
+        </b-col>
+      </b-row>
+
+      <template v-for="subcategory in category.subcategory">
+        <b-row :key="`${subcategory.$.id}-stats`" class="align-items-center mb-3">
+          <b-col lg="4">
+            <a
+              href="#"
+              @click.prevent="toggleDetailsForSubcategoryId(subcategory.$.id)"
+              :class="{ 'font-weight-bold' : showDetailsForSubcategoryId === subcategory.$.id }"
+            >
+              <template v-if="showDetailsForSubcategoryId === subcategory.$.id">
+                -
+              </template>
+              <template v-else>
+                +
+              </template>
+              {{ subcategory.name[0] }}
+            </a>
+          </b-col>
+          <b-col lg="8">
+            <b-row>
+              <b-col>
                 <RangeBar
                   v-if="subcategory.stats[0].ibu
                     && subcategory.stats[0].ibu[0].low
@@ -57,8 +85,8 @@
                 <template v-else>
                   Flexible
                 </template>
-              </td>
-              <td>
+              </b-col>
+              <b-col>
                 <RangeBar
                   v-if="subcategory.stats[0].og
                     && subcategory.stats[0].og[0].low
@@ -70,8 +98,8 @@
                 <template v-else>
                   Flexible
                 </template>
-              </td>
-              <td>
+              </b-col>
+              <b-col>
                 <RangeBar
                   v-if="subcategory.stats[0].fg
                     && subcategory.stats[0].fg[0].low
@@ -83,16 +111,16 @@
                 <template v-else>
                   Flexible
                 </template>
-              </td>
-              <td>
+              </b-col>
+              <b-col>
                 <BeerColorGradientBar
                   v-if="subcategory.stats[0].srm[0].low && subcategory.stats[0].srm[0].high"
                   :low="Number.parseFloat(subcategory.stats[0].srm[0].low)"
                   :high="Number.parseFloat(subcategory.stats[0].srm[0].high)"
                   :value="Number.parseFloat(filters.srm)"
                 />
-              </td>
-              <td>
+              </b-col>
+              <b-col>
                 <RangeBar
                   v-if="subcategory.stats[0].abv
                     && subcategory.stats[0].abv[0].low
@@ -104,20 +132,22 @@
                 <template v-else>
                   Flexible
                 </template>
-              </td>
-            </tr>
-            <tr
-              v-if="showDetailsForSubcategoryId === subcategory.$.id"
-              :key="`${subcategory.$.id}-details`"
-            >
-              <td colspan="6" class="pt-3">
-                <SubcategoryDetails :subcategory="subcategory" />
-              </td>
-            </tr>
-          </template>
-        </template>
-      </tbody>
-    </table>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+
+        <b-row
+          v-if="showDetailsForSubcategoryId === subcategory.$.id"
+          :key="`${subcategory.$.id}-details`"
+          class="my-3"
+        >
+          <b-col offset="1" cols="10" class="rounded border shadow p-3">
+            <SubcategoryDetails :subcategory="subcategory" />
+          </b-col>
+        </b-row>
+      </template>
+    </template>
   </div>
 </template>
 

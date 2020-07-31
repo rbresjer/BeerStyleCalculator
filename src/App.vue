@@ -18,16 +18,11 @@
       </b-row>
 
       <Results />
-
-      <div v-if="isLoading">
-        <div class="spinner-border text-primary"></div>
-      </div>
     </b-container>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import Form from './components/Form.vue';
 import Results from './components/Results.vue';
 
@@ -35,12 +30,6 @@ export default {
   components: {
     Form,
     Results,
-  },
-
-  computed: {
-    ...mapState([
-      'isLoading',
-    ]),
   },
 
   mounted() {
