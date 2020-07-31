@@ -113,7 +113,7 @@
           <b-col cols="2"></b-col>
           <b-col cols="10">
             <b-form-checkbox v-model="showFlexible" name="check-button" switch>
-              Match flexible
+              Show flexible styles
             </b-form-checkbox>
           </b-col>
         </b-row>
